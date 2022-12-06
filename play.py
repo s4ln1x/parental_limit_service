@@ -4,6 +4,7 @@ from subprocess import run
 from datetime import datetime
 from time import sleep
 import argparse
+from os.path import exists
 
 
 class PlayTime:
@@ -15,14 +16,15 @@ class PlayTime:
         self.play_limit = play_limit
 
     def read_play_time(self) -> None:
-        with open(self.play_file, 'r') as kid_fd:
-            text = kid_fd.readlines()
-        if text:
-            date, counter = text[-1].split(':')
-            date_str = datetime.strptime(date, self.date_format).strftime(self.date_format)
-            if date_str == self.today:
-                self.times_play = int(counter.strip())
-        self.stop_playing()
+        if exists(self.play_file):
+            with open(self.play_file, 'r') as kid_fd:
+                text = kid_fd.readlines()
+            if text:
+                date, counter = text[-1].split(':')
+                date_str = datetime.strptime(date, self.date_format).strftime(self.date_format)
+                if date_str == self.today:
+                    self.times_play = int(counter.strip())
+            self.stop_playing()
 
     def write_play_time(self) -> None:
         self.read_play_time()
@@ -43,7 +45,7 @@ class PlayTime:
 
     @staticmethod
     def shutdown_computer():
-        run(['echo', 'bash', '-c', 'shutdown', '-P'])
+        run(['bash', '-c', 'shutdown', '-P'])
 
 
 if __name__ == '__main__':
