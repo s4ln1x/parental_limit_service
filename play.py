@@ -24,7 +24,6 @@ class PlayTime:
                 date_str = datetime.strptime(date, self.date_format).strftime(self.date_format)
                 if date_str == self.today:
                     self.times_play = int(counter.strip())
-            self.stop_playing()
 
     def write_play_time(self) -> None:
         self.read_play_time()
@@ -33,19 +32,21 @@ class PlayTime:
             self.shutdown_computer()
 
     def stop_playing(self) -> None:
+        self.read_play_time()
         if self.times_play >= self.play_limit:
             self.shutdown_computer()
             exit(0)
 
     def run(self):
         while True:
+            self.stop_playing()
             # Sleep 35 minutes
-            sleep(60 * 35)
+            sleep(1 * 35)
             self.write_play_time()
 
     @staticmethod
     def shutdown_computer():
-        run(['bash', '-c', 'shutdown', '-P'])
+        run(['bash', '-c', 'shutdown', 'now'])
 
 
 if __name__ == '__main__':
