@@ -41,7 +41,7 @@ class PlayTime:
         while True:
             self.stop_playing()
             # Sleep 35 minutes
-            sleep(1 * 35)
+            sleep(60 * 35)
             self.write_play_time()
 
     @staticmethod
