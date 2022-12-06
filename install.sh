@@ -9,6 +9,6 @@ fi
 SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]-$0}")")
 
 # Using + as separator instead of /
-sed "s+ExecStart\=+ExecStart\=${SCRIPT_PATH}/play.py+g" "${SCRIPT_PATH}"/parental-limit.service
+sed "s+ExecStart\=+ExecStart\=${SCRIPT_PATH}/play.py /tmp/kid.txt+g " "${SCRIPT_PATH}"/parental-limit.service
 sudo cp "${SCRIPT_PATH}"/parental-limit.service /etc/systemd/user
 sudo systemctl enable --now parental-limit.service
