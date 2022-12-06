@@ -1,0 +1,10 @@
+[Unit]
+Description=Parental limit service
+
+[Service]
+Type=simple
+ExecStart=
+User=spiderman
+
+[Install]
+WantedBy=multi-user.target
