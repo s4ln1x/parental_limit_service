@@ -7,8 +7,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]-$0}")")
-
-# Using + as separator instead of /
-sed -i "s+ExecStart\=+ExecStart\=${SCRIPT_PATH}/play.py /tmp/kid.txt+g " "${SCRIPT_PATH}"/parental-limit.service
-sudo cp "${SCRIPT_PATH}"/parental-limit.service /etc/systemd/user
+sudo cp "${SCRIPT_PATH}"/parental-limit.service /etc/systemd/system/
+sudo cp "${SCRIPT_PATH}"/play.py /usr/local/bin/
+sudo systemctl daemon-reload
 sudo systemctl enable --now parental-limit.service
