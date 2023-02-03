@@ -40,8 +40,8 @@ class PlayTime:
     def run(self):
         while True:
             self.stop_playing()
-            # Sleep 35 minutes
-            sleep(60 * 35)
+            # Sleep 65 minutes
+            sleep(60 * 65)
             self.write_play_time()
 
     @staticmethod
@@ -57,7 +57,7 @@ if __name__ == '__main__':
                              default=2,
                              type=int,
                              required=False,
-                             help='X number of times you want your child to play (35 minutes each time)')
+                             help='X number of times you want your child to play (65 minutes each time)')
     play_parser.add_argument('PLAY_TIME_FILE',
                              type=str,
                              help='Path to file plus desired filename, i.e. /tmp/my_kids_name.txt')

@@ -5,6 +5,7 @@ Description=Parental limit service
 WantedBy=multi-user.target
 
 [Service]
+EnvironmentFile=/usr/local/etc/parental.env
 Type=simple
 WorkingDirectory=/usr/local/bin
-ExecStart=/usr/local/bin/play.py /tmp/kid.txt
+ExecStart=/usr/local/bin/play.py --play_time ${CHILD_PLAY_TIMES} /tmp/kid.txt

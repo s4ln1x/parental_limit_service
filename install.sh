@@ -9,5 +9,6 @@ fi
 SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]-$0}")")
 sudo cp "${SCRIPT_PATH}"/parental-limit.service /etc/systemd/system/
 sudo cp "${SCRIPT_PATH}"/play.py /usr/local/bin/
+sudo cp "${SCRIPT_PATH}"/parental.env /usr/local/etc/
 sudo systemctl daemon-reload
 sudo systemctl enable --now parental-limit.service
